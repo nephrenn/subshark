@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="landing-content">
+    <div class="landing-header text-center">
+        <img src="{{ url_for('static', filename='images/subshark-logo.png') }}" alt="SubShark Logo" class="landing-logo mb-3">
+        <h1><span style="color: var(--google-blue);">SubShark</span>: Your Ultimate <span style="color: var(--google-blue);">Subscription Management</span> Companion</h1>
+        <p class="lead">Transform how you track, manage, and optimize your digital subscriptions with intelligent, user-friendly tools.</p>
+        <div class="mt-4 mb-4">
+            <a href="{{ url_for('routes.home_logged_in_route') }}" class="btn btn-primary btn-lg">Start Tracking Now</a>
+        </div>
+        <div class="features-section">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line fa-2x mb-3"></i>
+                        <h3>Comprehensive Tracking</h3>
+                        <p>Monitor all your subscriptions in one centralized dashboard with real-time insights</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-money-bill-wave fa-2x mb-3"></i>
+                        <h3>Cost Optimization</h3>
+                        <p>Identify unnecessary expenses and potential savings with smart financial analysis</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-globe fa-2x mb-3"></i>
+                        <h3>Multi-Currency Management</h3>
+                        <p>Track subscriptions globally with real-time currency conversion and insights</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="main-content">
+    <div class="profile-header">
+        <h1>Calendar</h1>
+        <p class="lead">Track your subscription billing dates</p>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="calendar-controls d-flex justify-content-between align-items-center mb-4">
+                        <button id="prevMonth" class="btn btn-outline-primary">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <h3 id="monthYear" class="mb-0"></h3>
+                        <button id="nextMonth" class="btn btn-outline-primary">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered calendar-table">
+                            <thead>
+                                <tr>
+                                    <th>Sun</th>
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calendarBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Subscriptions List Modal -->
+<div class="modal fade" id="subscriptionsListModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Subscriptions for this day</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+{% endblock %}

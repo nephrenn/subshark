@@ -1,0 +1,286 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="main-content">
+    <div class="profile-header">
+        <h1>My Subscriptions</h1>
+        <p class="lead">Manage all your subscriptions in one place</p>
+    </div>
+    
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="categoryFilter" class="form-label">Category</label>
+                            <select class="form-select" id="categoryFilter">
+                                <option value="">All Categories</option>
+                                <option value="Streaming">Streaming</option>
+                                <option value="Software">Software</option>
+                                <option value="Gaming">Gaming</option>
+                                <option value="Music">Music</option>
+                                <option value="Utilities">Utilities</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="sortSelect" class="form-label">Sort By</label>
+                            <select class="form-select" id="sortSelect">
+                                <option value="name_asc">Name (A-Z)</option>
+                                <option value="name_desc">Name (Z-A)</option>
+                                <option value="cost_asc">Cost (Low to High)</option>
+                                <option value="cost_desc">Cost (High to Low)</option>
+                                <option value="date_asc">Billing Date (Nearest)</option>
+                                <option value="date_desc">Billing Date (Furthest)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end">
+                            <button type="button" class="btn btn-primary" onclick="addSubscription()">
+                                <i class="fas fa-plus"></i> Add Subscription
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card d-none d-md-block">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Your Subscriptions</h5>
+                </div>
+                <div class="card-body">
+                    {% if subscriptions %}
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="subscriptionsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Category</th>
+                                        <th>Monthly Cost</th>
+                                        <th>Next Billing Date</th>
+                                        <th>Notes</th>
+                                        <th>Auto-Renew</th>
+                                        <th>Alert</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for subscription in subscriptions %}
+                                    <tr>
+                                        <td>{{ subscription.name }}</td>
+                                        <td>
+                                            <span class="badge bg-{{ category_colors[subscription.category] }}">
+                                                {{ subscription.category }}
+                                            </span>
+                                        </td>
+                                        <td>{{ subscription.currency_display }} {{ "%.2f"|format(subscription.cost) }}</td>
+                                        <td>{{ subscription.billing_date.strftime('%Y-%m-%d') }}</td>
+                                        <td>{{ subscription.notes or '-' }}</td>
+                                        <td>
+                                            {% if subscription.auto_renew == 'yes' %}
+                                                <span class="badge bg-success">Yes</span>
+                                            {% else %}
+                                                <span class="badge bg-warning text-dark">No</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if subscription.set_reminder == 'yes' %}
+                                                <span class="badge bg-info">Enabled</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary">Disabled</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary me-2 edit-btn" onclick="editSubscription({{ subscription.id }})">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger delete-btn" onclick="deleteSubscription({{ subscription.id }})">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-clipboard-list fa-3x text-muted mb-3"></i>
+                            <h5>No subscriptions yet</h5>
+                            <p class="text-muted">Click the "Add Subscription" button to start tracking your subscriptions.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+            <!-- Mobile Card View -->
+            <div class="d-block d-md-none">
+                {% if subscriptions %}
+                    {% for subscription in subscriptions %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ subscription.name }}</h5>
+                                <p>
+                                    <strong>Category:</strong> <span class="badge bg-{{ category_colors[subscription.category] }}">{{ subscription.category }}</span><br>
+                                    <strong>Monthly Cost:</strong> {{ subscription.currency_display }} {{ "%.2f"|format(subscription.cost) }}<br>
+                                    <strong>Next Billing Date:</strong> {{ subscription.billing_date.strftime('%Y-%m-%d') }}<br>
+                                    <strong>Notes:</strong> {{ subscription.notes or '-' }}<br>
+                                    <strong>Auto-Renew:</strong> {% if subscription.auto_renew == 'yes' %}<span class="badge bg-success">Yes</span>{% else %}<span class="badge bg-warning text-dark">No</span>{% endif %}<br>
+                                    <strong>Alert:</strong> {% if subscription.set_reminder == 'yes' %}<span class="badge bg-info">Enabled</span>{% else %}<span class="badge bg-secondary">Disabled</span>{% endif %}
+                                </p>
+                                <div>
+                                    <button class="btn btn-sm btn-primary me-2" onclick="editSubscription({{ subscription.id }})">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteSubscription({{ subscription.id }})">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-clipboard-list fa-3x text-muted mb-3"></i>
+                        <h5>No subscriptions yet</h5>
+                        <p class="text-muted">Click the "Add Subscription" button to start tracking your subscriptions.</p>
+                    </div>
+                {% endif %}
+            </div>
+    </div>
+</div>
+
+<!-- Add/Edit Subscription Modal -->
+<div class="modal fade" id="subscriptionModal" tabindex="-1" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="subscriptionModalLabel">Add New Subscription</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="subscriptionForm">
+                    <input type="hidden" id="subscriptionId" name="id">
+                    <div class="mb-3">
+                        <label for="subscriptionName" class="form-label">Subscription Name</label>
+                        <input type="text" class="form-control" id="subscriptionName" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <select class="form-select" id="category" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="Streaming">Streaming</option>
+                            <option value="Software">Software</option>
+                            <option value="Gaming">Gaming</option>
+                            <option value="Music">Music</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="currency" class="form-label">Currency</label>
+                        <select class="form-select" id="currency" name="currency" required>
+                            <option value="USD">USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound</option>
+                            <option value="JPY">JPY - Japanese Yen</option>
+                            <option value="CNY">CNY - Chinese Yuan</option>
+                            <option value="AUD">AUD - Australian Dollar</option>
+                            <option value="CAD">CAD - Canadian Dollar</option>
+                            <option value="CHF">CHF - Swiss Franc</option>
+                            <option value="HKD">HKD - Hong Kong Dollar</option>
+                            <option value="SGD">SGD - Singapore Dollar</option>
+                            <option value="SEK">SEK - Swedish Krona</option>
+                            <option value="KRW">KRW - South Korean Won</option>
+                            <option value="INR">INR - Indian Rupee</option>
+                            <option value="BRL">BRL - Brazilian Real</option>
+                            <option value="RUB">RUB - Russian Ruble</option>
+                            <option value="ZAR">ZAR - South African Rand</option>
+                            <option value="MXN">MXN - Mexican Peso</option>
+                            <option value="AED">AED - UAE Dirham</option>
+                            <option value="THB">THB - Thai Baht</option>
+                            <option value="TRY">TRY - Turkish Lira</option>
+                            <option value="NZD">NZD - New Zealand Dollar</option>
+                            <option value="PLN">PLN - Polish Złoty</option>
+                            <option value="NOK">NOK - Norwegian Krone</option>
+                            <option value="DKK">DKK - Danish Krone</option>
+                            <option value="ILS">ILS - Israeli Shekel</option>
+                            <option value="MYR">MYR - Malaysian Ringgit</option>
+                            <option value="IDR">IDR - Indonesian Rupiah</option>
+                            <option value="PHP">PHP - Philippine Peso</option>
+                            <option value="CZK">CZK - Czech Koruna</option>
+                            <option value="HUF">HUF - Hungarian Forint</option>
+                            <option value="CLP">CLP - Chilean Peso</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cost" class="form-label">Cost</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="currencySymbol">$</span>
+                            <input type="number" class="form-control" id="cost" name="cost" step="0.01" min="0" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="billingCycle" class="form-label">Billing Cycle</label>
+                        <select class="form-select" id="billingCycle" name="billingCycle" required>
+                            <option value="weekly">Every week</option>
+                            <option value="monthly" selected>Every month</option>
+                            <option value="quarterly">Every Quarter</option>
+                            <option value="sixMonths">Every Six Months</option>
+                            <option value="yearly">Every Year</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="billingDate" class="form-label">Next Billing Date</label>
+                        <input type="date" class="form-control" id="billingDate" name="billingDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="autoRenew" class="form-label">Auto Renew</label>
+                        <select class="form-select" id="autoRenew" name="autoRenew" required>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="setReminder" class="form-label">Set Reminder</label>
+                        <select class="form-select" id="setReminder" name="setReminder" required>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="notes" class="form-label">Notes (Optional)</label>
+                        <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="subscriptionForm" class="btn btn-primary">Add Subscription</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Subscription</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this subscription? This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

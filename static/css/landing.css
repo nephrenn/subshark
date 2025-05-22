@@ -1,0 +1,100 @@
+:root {
+    --google-blue: #4285F4;
+    --google-green: #34A853;
+    --google-yellow: #FBBC05;
+    --background-light: #F8F9FA;
+    --text-dark: #202124;
+}
+
+.landing-logo {
+    max-width: 250px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.landing-content {
+    width: 100%;
+    min-height: 100vh;
+    padding: 2rem 3rem;
+    background-color: var(--background-light);
+    font-family: 'Roboto', sans-serif;
+}
+
+.landing-header {
+    padding: 4rem 0;
+    background-color: var(--background-light);
+}
+
+.landing-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.landing-header .lead {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    height: 100%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.feature-card i {
+    color: var(--google-blue);
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1rem 0;
+    color: var(--text-dark);
+}
+
+.feature-card p {
+    color: var(--text-dark);
+    opacity: 0.8;
+}
+
+.btn-primary {
+    background-color: var(--google-blue);
+    border-color: var(--google-blue);
+    padding: 0.8rem 2rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: darken(var(--google-blue), 10%);
+    border-color: darken(var(--google-blue), 10%);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .landing-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .landing-header .lead {
+        font-size: 1.2rem;
+    }
+    
+    .landing-content {
+        padding: 1rem;
+    }
+}

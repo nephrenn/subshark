@@ -1,0 +1,204 @@
+.main-content {
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    min-height: 100vh;
+    padding: 2rem 3rem;
+    background-color: var(--background-light);
+}
+
+.section-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.section-navigation .btn-group {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .section-navigation .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .section-navigation .btn-group .btn {
+        margin-bottom: 0.5rem;
+        width: 100%;
+    }
+}
+
+.profile-header {
+    margin-bottom: 3rem;
+}
+
+.profile-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.stats-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    height: 100%;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+}
+
+.stats-value {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    word-break: break-word;
+}
+
+.stats-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+.profile-image-small {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.calendar-table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar-cell {
+    height: 120px;
+    vertical-align: top;
+    padding: 8px;
+    border: 1px solid #dee2e6;
+    width: 14.28%;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-cell:hover {
+    background-color: rgba(162, 123, 92, 0.05);
+}
+
+.calendar-cell.has-subscriptions {
+    background-color: rgba(162, 123, 92, 0.1);
+    cursor: pointer;
+}
+
+.date-number {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.subscription-list {
+    font-size: 0.9rem;
+    margin-top: 4px;
+    max-height: 80px;
+    overflow-y: auto;
+}
+
+.subscription-link {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+
+.subscription-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.more-link {
+    display: block;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.8rem;
+    margin-top: 2px;
+}
+
+.more-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 992px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 1rem;
+    }
+    
+    .profile-header h1 {
+        font-size: 2rem;
+    }
+    
+    .stats-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Modern UI Animations */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+    transition: background-color 0.3s ease;
+}
+
+.badge:hover {
+    opacity: 0.8;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.modal-dialog {
+    transition: transform 0.4s ease;
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1.02);
+}
+
+.edit-btn:hover {
+    background-color: #0056b3 !important;
+}
+
+.delete-btn:hover {
+    background-color: #a71d2a !important;
+}

@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="main-content">
+    <div class="profile-header">
+        <h1>Currency Settings</h1>
+        <p class="text-muted">Choose your preferred currency for displaying subscription costs</p>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="currency" class="form-label">Select Currency</label>
+                            <select class="form-select" id="currency" name="currency">
+                                <option value="USD" {% if current_currency == 'USD' %}selected{% endif %}>USD - US Dollar</option>
+                                <option value="EUR" {% if current_currency == 'EUR' %}selected{% endif %}>EUR - Euro</option>
+                                <option value="GBP" {% if current_currency == 'GBP' %}selected{% endif %}>GBP - British Pound</option>
+                                <option value="JPY" {% if current_currency == 'JPY' %}selected{% endif %}>JPY - Japanese Yen</option>
+                                <option value="CNY" {% if current_currency == 'CNY' %}selected{% endif %}>CNY - Chinese Yuan</option>
+                                <option value="AUD" {% if current_currency == 'AUD' %}selected{% endif %}>AUD - Australian Dollar</option>
+                                <option value="CAD" {% if current_currency == 'CAD' %}selected{% endif %}>CAD - Canadian Dollar</option>
+                                <option value="CHF" {% if current_currency == 'CHF' %}selected{% endif %}>CHF - Swiss Franc</option>
+                                <option value="HKD" {% if current_currency == 'HKD' %}selected{% endif %}>HKD - Hong Kong Dollar</option>
+                                <option value="SGD" {% if current_currency == 'SGD' %}selected{% endif %}>SGD - Singapore Dollar</option>
+                                <option value="SEK" {% if current_currency == 'SEK' %}selected{% endif %}>SEK - Swedish Krona</option>
+                                <option value="KRW" {% if current_currency == 'KRW' %}selected{% endif %}>KRW - South Korean Won</option>
+                                <option value="INR" {% if current_currency == 'INR' %}selected{% endif %}>INR - Indian Rupee</option>
+                                <option value="BRL" {% if current_currency == 'BRL' %}selected{% endif %}>BRL - Brazilian Real</option>
+                                <option value="RUB" {% if current_currency == 'RUB' %}selected{% endif %}>RUB - Russian Ruble</option>
+                                <option value="ZAR" {% if current_currency == 'ZAR' %}selected{% endif %}>ZAR - South African Rand</option>
+                                <option value="MXN" {% if current_currency == 'MXN' %}selected{% endif %}>MXN - Mexican Peso</option>
+                                <option value="AED" {% if current_currency == 'AED' %}selected{% endif %}>AED - UAE Dirham</option>
+                                <option value="THB" {% if current_currency == 'THB' %}selected{% endif %}>THB - Thai Baht</option>
+                                <option value="TRY" {% if current_currency == 'TRY' %}selected{% endif %}>TRY - Turkish Lira</option>
+                                <option value="NZD" {% if current_currency == 'NZD' %}selected{% endif %}>NZD - New Zealand Dollar</option>
+                                <option value="PLN" {% if current_currency == 'PLN' %}selected{% endif %}>PLN - Polish Złoty</option>
+                                <option value="NOK" {% if current_currency == 'NOK' %}selected{% endif %}>NOK - Norwegian Krone</option>
+                                <option value="DKK" {% if current_currency == 'DKK' %}selected{% endif %}>DKK - Danish Krone</option>
+                                <option value="ILS" {% if current_currency == 'ILS' %}selected{% endif %}>ILS - Israeli Shekel</option>
+                                <option value="MYR" {% if current_currency == 'MYR' %}selected{% endif %}>MYR - Malaysian Ringgit</option>
+                                <option value="IDR" {% if current_currency == 'IDR' %}selected{% endif %}>IDR - Indonesian Rupiah</option>
+                                <option value="PHP" {% if current_currency == 'PHP' %}selected{% endif %}>PHP - Philippine Peso</option>
+                                <option value="CZK" {% if current_currency == 'CZK' %}selected{% endif %}>CZK - Czech Koruna</option>
+                                <option value="HUF" {% if current_currency == 'HUF' %}selected{% endif %}>HUF - Hungarian Forint</option>
+                                <option value="CLP" {% if current_currency == 'CLP' %}selected{% endif %}>CLP - Chilean Peso</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Currency Preference</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

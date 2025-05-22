@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="main-content">
+    <div class="container text-center py-5">
+        <img src="{{ url_for('static', filename='images/subshark-logo.png') }}" alt="SubShark Logo" class="landing-logo mb-4">
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="display-4 mb-4" style="color: var(--google-blue);">
+                    Discover the Future of Subscription Management
+                </h1>
+                <p class="lead text-muted mb-5">
+                    Get ready for smarter, more efficient subscription tracking
+                </p>
+            </div>
+        </div>
+        
+        <div class="row mb-5">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-tags fa-3x mb-3 text-primary"></i>
+                        <h4>Subscription Offers & Bundles</h4>
+                        <p class="text-muted">
+                            Find the best deals and money-saving subscription packages. Compare pricing across different services and uncover hidden discounts.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-exchange-alt fa-3x mb-3 text-success"></i>
+                        <h4>Alternative Service Recommendations</h4>
+                        <p class="text-muted">
+                            Get smart suggestions for alternative subscription services. Compare features and pricing of similar platforms to find more cost-effective options.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-shopping-basket fa-3x mb-3 text-info"></i>
+                        <h4>Intelligent Subscription Marketplace</h4>
+                        <p class="text-muted">
+                            Browse curated subscription recommendations. Get personalized suggestions based on your interests and discover new services tailored to your preferences.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="alert alert-primary p-4 mx-auto" style="max-width: 800px;">
+            <h4 class="alert-heading mb-3">Coming Soon!</h4>
+            <p class="mb-0">
+                We're transforming how you discover and manage subscriptions. Stay tuned for a more powerful, intelligent, and user-friendly experience.
+                Your feedback will help shape the future of SubShark!
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

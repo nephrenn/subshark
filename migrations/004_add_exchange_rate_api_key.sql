@@ -1,0 +1,2 @@
+-- No database changes needed for this migration
+-- This is a placeholder to remind about adding the API key in Env Secrets

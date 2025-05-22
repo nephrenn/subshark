@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="main-content container-fluid text-center py-5">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <img src="{{ url_for('static', filename='images/subshark-logo.png') }}" alt="SubShark Logo" class="landing-logo mb-4">
+            
+            <h1 class="display-4 mb-4" style="color: var(--google-blue);">
+                Analytics: Your Financial Insights Are Coming Soon
+            </h1>
+            <p class="lead text-muted mb-5">
+                We're working hard to bring you powerful, intelligent analytics that will transform how you understand your subscriptions.
+            </p>
+        </div>
+    </div>
+    
+    <div class="row mb-5 justify-content-center">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <i class="fas fa-chart-line fa-3x mb-3 text-primary"></i>
+                    <h4>Comprehensive Spending Insights</h4>
+                    <p class="text-muted">
+                        Dive deep into your subscription spending with detailed category breakdowns and trend analysis.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <i class="fas fa-piggy-bank fa-3x mb-3 text-success"></i>
+                    <h4>Cost Optimization Recommendations</h4>
+                    <p class="text-muted">
+                        Get smart suggestions to reduce your subscription expenses and identify potential savings.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <i class="fas fa-calendar-check fa-3x mb-3 text-info"></i>
+                    <h4>Predictive Billing Forecasts</h4>
+                    <p class="text-muted">
+                        Anticipate future expenses with advanced forecasting and subscription trend tracking.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <div class="alert alert-primary p-4">
+                <h4 class="alert-heading mb-3">Stay Tuned!</h4>
+                <p class="mb-0">
+                    SubShark is continuously evolving to provide you with the most powerful subscription management tools. 
+                    Our analytics feature is just around the corner, designed to give you unprecedented insights into your spending.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
